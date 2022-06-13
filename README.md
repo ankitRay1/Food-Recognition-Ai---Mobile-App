@@ -1,4 +1,4 @@
-# emamappv2
+# Foodie Pedia
 
 A new Flutter project.
 
