@@ -1,0 +1,92 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:foodie_pedia/data_models/product_list.dart';
+import 'package:foodie_pedia/data_models/product_list_supplier.dart';
+import 'package:foodie_pedia/database/local_database.dart';
+import 'package:foodie_pedia/database/paged_product_query.dart';
+import 'package:foodie_pedia/pages/product/common/product_query_page.dart';
+
+class ProductQueryPageHelper {
+  Future<void> openBestChoice({
+    required final PagedProductQuery productQuery,
+    required final LocalDatabase localDatabase,
+    required final String heroTag,
+    required final String name,
+    required final BuildContext context,
+  }) async {
+    final ProductListSupplier supplier =
+        await ProductListSupplier.getBestSupplier(
+      productQuery,
+      localDatabase,
+    );
+    //ignore: use_build_context_synchronously
+    Navigator.push<Widget>(
+      context,
+      MaterialPageRoute<Widget>(
+        builder: (BuildContext context) => ProductQueryPage(
+          productListSupplier: supplier,
+          heroTag: heroTag,
+          name: name,
+          lastUpdate: supplier.timestamp,
+        ),
+      ),
+    );
+  }
+
+  static String getDurationStringFromSeconds(
+      final int seconds, AppLocalizations appLocalizations) {
+    final double minutes = seconds / 60;
+    final int roundMinutes = minutes.round();
+    if (roundMinutes < 60) {
+      return appLocalizations.plural_ago_minutes(roundMinutes);
+    }
+
+    final double hours = minutes / 60;
+    final int roundHours = hours.round();
+    if (roundHours < 24) {
+      return appLocalizations.plural_ago_hours(roundHours);
+    }
+
+    final double days = hours / 24;
+    final int roundDays = days.round();
+    if (roundDays < 7) {
+      return appLocalizations.plural_ago_days(roundDays);
+    }
+    final double weeks = days / 7;
+    final int roundWeeks = weeks.round();
+    if (roundWeeks <= 4) {
+      return appLocalizations.plural_ago_weeks(roundWeeks);
+    }
+
+    final double months = days / (365 / 12);
+    final int roundMonths = months.round();
+    return appLocalizations.plural_ago_months(roundMonths);
+  }
+
+  static String getDurationStringFromTimestamp(
+      final int timestamp, BuildContext context) {
+    final int now = LocalDatabase.nowInMillis();
+    final int seconds = ((now - timestamp) / 1000).floor();
+    return getDurationStringFromSeconds(seconds, AppLocalizations.of(context));
+  }
+
+  static String getProductListLabel(
+      final ProductList productList, final BuildContext context,
+      {final bool verbose = true}) {
+    final AppLocalizations appLocalizations = AppLocalizations.of(context);
+    switch (productList.listType) {
+      case ProductListType.HTTP_SEARCH_KEYWORDS:
+        return '${productList.parameters}'
+            '${verbose ? ' ${appLocalizations.category_search}' : ''}';
+      case ProductListType.HTTP_SEARCH_CATEGORY:
+        return '${productList.parameters}'
+            '${verbose ? ' ${appLocalizations.category_search}' : ''}';
+      case ProductListType.SCAN_SESSION:
+        return appLocalizations.scan;
+      case ProductListType.HISTORY:
+        return appLocalizations.recently_seen_products;
+      case ProductListType.USER:
+        return productList.parameters;
+    }
+  }
+}

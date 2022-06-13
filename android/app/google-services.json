@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "812753213361",
+    "project_id": "foodie-pedia-d8c0c",
+    "storage_bucket": "foodie-pedia-d8c0c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812753213361:android:14388a3c5f2b7740d98f90",
+        "android_client_info": {
+          "package_name": "com.foodie.pedia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812753213361-mh2kv0ujgbpj89f5mp6a5r9obdv2l3t2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPTvFpkQKLnREagMxziZIbsS1dQxC_jVM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "812753213361-mh2kv0ujgbpj89f5mp6a5r9obdv2l3t2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

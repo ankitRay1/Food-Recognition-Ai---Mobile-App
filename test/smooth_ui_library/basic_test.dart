@@ -1,0 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:foodie_pedia/generic_lib/dialogs/smooth_alert_dialog.dart';
+
+void main() {
+  testWidgets('Alert dialog can be created', (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(
+        home: SmoothAlertDialog.advanced(body: Placeholder())));
+    expect(find.byType(SmoothAlertDialog), findsOneWidget);
+  });
+}

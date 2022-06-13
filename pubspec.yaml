@@ -1,0 +1,166 @@
+name: foodie_pedia
+
+version: 0.0.0+600
+publish_to: "none"
+
+environment:
+  sdk: ">=2.15.1 <3.0.0"
+
+dependencies:
+  flutter_lints: ^2.0.1
+  carousel_slider: ^4.1.1
+  cupertino_icons: ^1.0.5
+  # Using a fork with fixes for flutter 3 until they are applied to the package
+  device_preview:
+    git:
+      url: https://github.com/monkeydaichan/flutter_device_preview.git
+      path: device_preview
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_svg: ^1.1.0
+  flutter_map: ^1.0.0
+  flutter_widget_from_html_core: any
+  fwfh_selectable_text: ^0.8.3+1
+  flutter_secure_storage: ^5.0.2
+  hive: ^2.2.1
+  hive_flutter: ^1.1.0
+  http: ^0.13.4
+  image_picker: ^0.8.5+3
+  equatable: ^2.0.3
+  iso_countries: 2.1.0
+  latlong2: ^0.8.1
+  # Currently using the fork of M123-dev with additional features, to be switched back when PR is merged
+  matomo_tracker:
+    git:
+      url: "https://github.com/M123-dev/matomo-tracker.git"
+      ref: "fix-country"
+  modal_bottom_sheet: ^2.0.1
+  openfoodfacts: ^1.18.1
+  #  openfoodfacts:
+  #    path: ../../../openfoodfacts-dart
+  package_info_plus: ^1.4.2
+  device_info_plus: ^3.2.4
+  permission_handler: ^9.2.0
+  photo_view: ^0.14.0
+  uuid: ^3.0.6
+  provider: ^6.0.3
+  rubber: ^1.0.1
+  sentry_flutter: ^6.5.1 # careful with upgrading cf: https://github.com/openfoodfacts/smooth-app/issues/1300
+  url_launcher: ^6.1.3
+  visibility_detector: ^0.3.3
+  # Until the PR is merged, we have a fork of the camera plugin: https://github.com/openfoodfacts/smooth-app/issues/1892
+  camera:
+    git:
+      url: "https://github.com/g123k/plugins.git"
+      ref: "camera_fix_debug"
+      path: "packages/camera/camera"
+  camera_platform_interface: any
+  audioplayers: ^0.20.1
+  percent_indicator: ^4.2.2
+  mailto: ^2.0.0
+  flutter_native_splash: ^2.2.3
+  google_mlkit_barcode_scanning: ^0.3.0
+  image_cropper: ^2.0.3
+  auto_size_text: ^3.0.0
+  shared_preferences: ^2.0.15
+  typed_data: ^1.3.0 # careful with 1.3.1 because of flutter_driver dependence
+  intl: ^0.17.0
+  flutter_isolate: ^2.0.2
+  rxdart: ^0.27.4
+  collection: ^1.15.0
+  path: ^1.8.0 # careful with 1.8.1 because of https://github.com/flutter/flutter/issues/95478
+  path_provider: ^2.0.11
+  data_importer_shared:
+    path: ../data_importer_shared
+  data_importer:
+    path: ../data_importer
+  google_sign_in: ^5.3.3
+  firebase_auth: ^3.3.19
+  firebase_core: ^1.17.1
+  introduction_screen: ^3.0.2
+
+dev_dependencies:
+  integration_test:
+    sdk: flutter
+  flutter_driver:
+    sdk: flutter
+  flutter_launcher_icons: ^0.9.3
+  flutter_test:
+    sdk: flutter
+  mockito: ^5.2.0
+  path_provider_platform_interface: ^2.0.4
+  plugin_platform_interface: ^2.1.2
+
+dependency_overrides:
+  path: 1.8.0
+  meta: 1.7.0
+
+# 'flutter pub run flutter_launcher_icons:main' to update
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/app/splash.png"
+  adaptive_icon_background: "#FFFFFF"
+  # Only the inner 72x72dp of the 108x108dp adaptive icon is shown
+  # (extra padding of 18dp on all sides is used for visual effects)
+  # https://developer.android.com/guide/practices/ui_guidelines/icon_design_adaptive
+
+
+# 'flutter pub run flutter_native_splash:create' to update
+flutter_native_splash:
+  color: "#FFFFFF"
+  color_dark: "#333333"
+  #It must be a png file and should be sized for 4x pixel density.
+  image: "assets/app/splash.png"
+
+  # The branding property allows you to specify an image used as branding in the splash screen.
+  # It must be a png file. Currently, it is only supported for Android < v12 and iOS.
+  # 200dp width and 80dp height.
+  branding: assets/app/splashscreen_branding.png
+  branding_dark: assets/app/splashscreen_branding_dark.png
+
+  # https://developer.android.com/guide/topics/ui/splash-screen
+  android_12:
+    # Please note that the splash screen will be clipped to a circle on the center of the screen.
+    # App icon with an icon background: This should be 960×960 pixels, and fit within a circle
+    # 640 pixels in diameter.
+    # App icon without an icon background: This should be 1152×1152 pixels, and fit within a circle
+    # 768 pixels in diameter.
+    image: "assets/app/splash.png"
+    icon_background_color: "#FFFFFF"
+    icon_background_color_dark: "#333333"
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+  fonts:
+    - family: PlusJakartaSans
+      fonts:
+        - asset: assets/plus_jakarta_sans_regular/PlusJakartaSans-Regular.ttf
+        - asset: assets/plus_jakarta_sans_regular/PlusJakartaSans-Bold.ttf
+          weight: 700
+
+  assets:
+    - assets/actions/
+    - assets/app/
+    - assets/audio/
+    - assets/cache/
+    - assets/categories/
+    - assets/cacheTintable/
+    - assets/data/
+    - assets/labels/
+    - assets/metadata/
+    - assets/misc/
+    - assets/navigation/
+    - assets/network/cert.pem
+    - assets/onboarding/
+    - assets/preferences/
+    - assets/product/
+    - assets/ikonate_thin/
+    - assets/ikonate_bold/
+    - assets/plus_jakarta_sans_regular/
+    - assets/icons/visor_icon.svg
